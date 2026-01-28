@@ -5,4 +5,17 @@
     <string name="login_to_lokalotp">Login to LokalOTP</string>
     <string name="please_enter_your_email">Please enter your email</string>
     <string name="email_icon">Email Icon</string>
+    <string name="otp_screen">OTP Screen</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="otp_expired">OTP expired</string>
+    <string name="expires_in_s">Expires in %1$ds</string>
+    <string name="sending_otp">Sending OTP...</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="resend_otp_please_try_once_before_resending">Resend OTP (please try once before resending)</string>
+    <string name="resend_otp_couldn_t_get_the_last_one">Resend OTP (couldn\'t get the last one?)</string>
+    <string name="session_screen">Session Screen</string>
+    <string name="session_active">Session Active!</string>
+    <string name="session_duration_02d_02d">Session duration: %02d:%02d</string>
+    <string name="logout">Logout</string>
+    <string name="enter_6_digit_otp">Enter 6-digit OTP</string>
 </resources>
