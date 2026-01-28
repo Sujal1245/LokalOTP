@@ -2,6 +2,15 @@ package com.sujal.lokalotp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
 
 @HiltAndroidApp
-class LokalOTPApp: Application()
+class LokalOTPApp: Application(){
+    override fun onCreate() {
+        super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+    }
+}
