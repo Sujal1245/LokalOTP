@@ -40,7 +40,9 @@ fun OtpScreen(
     onVerifyOtp: (String) -> Unit,
     onResendOtp: () -> Unit
 ) {
-    var otp by rememberSaveable { mutableStateOf("") }
+    var otp by rememberSaveable(uiState.expiresAtMillis, uiState.attemptsLeft) {
+        mutableStateOf("")
+    }
     var resendingOtp by remember(uiState.expiresAtMillis) { mutableStateOf(false) }
 
     val currentTimeMillis by produceState(
