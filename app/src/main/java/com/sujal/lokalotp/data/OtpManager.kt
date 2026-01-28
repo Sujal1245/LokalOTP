@@ -13,6 +13,10 @@ class OtpManager {
 
     private val otpStore = mutableMapOf<String, OtpEntry>()
 
+    fun clearStore() {
+        otpStore.clear()
+    }
+
     fun generateOtp(email: String): String {
         val otp = generateSixDigitOtp()
         val entry = OtpEntry(
