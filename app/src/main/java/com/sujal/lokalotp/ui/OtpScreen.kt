@@ -41,6 +41,7 @@ fun OtpScreen(
     onResendOtp: () -> Unit
 ) {
     var otp by rememberSaveable { mutableStateOf("") }
+    var resendingOtp by remember(uiState.expiresAtMillis) { mutableStateOf(false) }
 
     val currentTimeMillis by produceState(
         initialValue = System.currentTimeMillis(),
@@ -144,10 +145,15 @@ fun OtpScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             TextButton(
-                onClick = onResendOtp,
-                enabled = isExpired || attemptsLeft < 3
+                onClick = {
+                    resendingOtp = true
+                    onResendOtp()
+                },
+                enabled = (isExpired || attemptsLeft < 3) && !resendingOtp
             ) {
-                if (isExpired) {
+                if (resendingOtp) {
+                    Text(stringResource(R.string.resending_otp))
+                } else if (isExpired) {
                     Text(stringResource(R.string.resend_otp))
                 } else if (attemptsLeft == 3) {
                     Text(stringResource(R.string.resend_otp_please_try_once_before_resending))

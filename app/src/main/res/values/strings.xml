@@ -18,4 +18,5 @@
     <string name="session_duration_02d_02d">Session duration: %02d:%02d</string>
     <string name="logout">Logout</string>
     <string name="enter_6_digit_otp">Enter 6-digit OTP</string>
+    <string name="resending_otp">Resending OTP...</string>
 </resources>
