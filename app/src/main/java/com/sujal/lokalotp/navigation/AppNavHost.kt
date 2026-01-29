@@ -17,7 +17,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.sujal.lokalotp.ui.ErrorScreen
+import com.sujal.lokalotp.ui.LoadingScreen
 import com.sujal.lokalotp.ui.LoginScreen
 import com.sujal.lokalotp.ui.OtpScreen
 import com.sujal.lokalotp.ui.SessionScreen
@@ -38,14 +38,14 @@ fun AppNavHost(
         authViewModel.events.collect { event ->
             when (event) {
                 is AuthEvent.NavigateToOtp -> {
-                    navController.navigate(AuthRoute.Otp.route)
+                    navController.navigate(AuthRoute.Otp.route){
+                        launchSingleTop = true
+                    }
                 }
 
                 is AuthEvent.NavigateToSession -> {
                     navController.navigate(AuthRoute.Session.route) {
                         launchSingleTop = true
-                    }
-                    navController.navigate(AuthRoute.Session.route) {
                         popUpTo(AuthRoute.Login.route) {
                             inclusive = true
                         }
@@ -54,10 +54,9 @@ fun AppNavHost(
 
                 AuthEvent.NavigateBackToLogin -> {
                     navController.navigate(AuthRoute.Login.route) {
-                        popUpTo(AuthRoute.Login.route) {
+                        popUpTo(AuthRoute.Session.route) {
                             inclusive = true
                         }
-                        launchSingleTop = true
                     }
                 }
 
@@ -113,8 +112,9 @@ fun AppNavHost(
                             }
                         )
                     }
+
                     else -> {
-                        ErrorScreen()
+                        LoadingScreen()
                     }
                 }
             }
@@ -135,8 +135,9 @@ fun AppNavHost(
                             }
                         )
                     }
+
                     else -> {
-                        ErrorScreen()
+                        LoadingScreen()
                     }
                 }
             }
